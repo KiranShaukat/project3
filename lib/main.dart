@@ -4,10 +4,13 @@ import './src/screens/SignUpPage.dart';
 import './src/screens/HomePage.dart';
 import './src/screens/Dashboard.dart';
 import './src/screens/ProductPage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-
-
-void main() => runApp(MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,9 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: HomePage(pageTitle: 'Welcome'),
-      routes: <String, WidgetBuilder> {
-        '/signup': (BuildContext context) =>  SignUpPage(),
-        '/signin': (BuildContext context) =>  SignInPage(),
+      routes: <String, WidgetBuilder>{
+        '/signup': (BuildContext context) => SignUpPage(),
+        '/signin': (BuildContext context) => SignInPage(),
         '/dashboard': (BuildContext context) => Dashboard(),
         '/productPage': (BuildContext context) => ProductPage(),
       },
